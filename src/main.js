@@ -15,13 +15,9 @@ window.LARemoteActions = {
 	    theme: 'light',
 	    content: 'Loading...',
 	    async onShow(instance) {
-		console.log("shree");
-
 		const parsed = mailtoParser.parse(instance.reference.getAttribute("href"));
-		console.log(parsed);
 		let elem = document.createElement("div");
 		elem.style.backgroundColor = "black";
-		console.log(elem);
 		let shadow = elem.attachShadow({mode: 'open'});
 		shadow.innerHTML = await (
 		    await fetch(
