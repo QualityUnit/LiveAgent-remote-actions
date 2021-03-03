@@ -11,10 +11,19 @@
     "content_scripts": [
 	{
 	    "matches": ["<all_urls>"],
-	    "js": ["dist/bundle.js"]
+	    "js": ["dist/extension.js"]
 	}
     ],
     "permissions": [
-	"*://liveagent.com/"
-    ]
+	"<all_urls>",
+	"storage"
+    ],
+    "options_ui": {
+	"page": "dist/options.html"
+    },
+    "browser_specific_settings": {
+	"gecko": {
+	    "id": "la-remote-actions@qualityunit.com"
+	}
+    }
 }
