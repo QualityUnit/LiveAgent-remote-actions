@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const WebExtPlugin = require('web-ext-plugin');
 const path = require('path');
 
 var config = {
@@ -15,7 +17,10 @@ var config = {
                         plugins: [
                             [
                                 "@babel/plugin-transform-react-jsx",
-                            ]
+                            ],
+                            [
+                                "@babel/plugin-transform-runtime",
+                            ],
                         ]
                     }
                 }
@@ -33,26 +38,32 @@ var extensionConfig = Object.assign({}, config, {
     node: {
 	global: false
     },
+    watch: true,
     devtool: "source-map",
     plugins: [
-	// new webpack.DefinePlugin({
-	//     global: 'window'		// Placeholder for global used in any node_modules
-	// }),
 	new HtmlWebpackPlugin({
 	    filename: "options.html",
-	    // templateContent: ({htmlWebpackPlugin}) => `
-	    //     <html>
-	    // 	<head>
-	    // 	    ${htmlWebpackPlugin.tags.headTags}
-	    // 	</head>
-	    // 	<body>
-	    // 	    <h1>Hello World</h1>
-	    // 	    ${htmlWebpackPlugin.tags.bodyTags}
-	    // 	</body>
-	    //     </html>
-	    // `
-	})
+	}),
+	new CopyPlugin({
+	    patterns: [
+		{ from: "manifest.json", to: "manifest.json" },
+            ],
+        }),
+	new WebExtPlugin({ sourceDir: '../../dist',  }),
     ]
+});
+
+var backgroudConfig = Object.assign({}, config, {
+    entry: './src/bg_page.js',
+    output: {
+	path: path.resolve(__dirname, 'dist'),
+	filename: 'bg_page.js',
+    },
+    node: {
+	global: false
+    },
+    watch: true,
+    devtool: "source-map",
 });
 
 var optionsConfig = Object.assign({}, config, {
@@ -65,5 +76,6 @@ var optionsConfig = Object.assign({}, config, {
 
 module.exports = [
     extensionConfig,
-    optionsConfig
+    optionsConfig,
+    backgroudConfig
 ];

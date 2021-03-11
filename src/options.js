@@ -1,5 +1,12 @@
 import { React } from './fake-react.js';
 
+var storage_uni = undefined;
+if (window.hasOwnProperty('chrome')) {
+    storage_uni = chrome;
+} else {
+    storage_uni = browser;
+}
+
 function get_settings() {
     const la_address = document.getElementById("la-address").value;
     const site_selector = document.getElementById("site-selector").value;
@@ -11,7 +18,7 @@ function get_settings() {
 }
 
 function save_settings(event) {
-    browser.storage.sync.set(get_settings());
+    storage_uni.storage.sync.set(get_settings());
 
     event.preventDefault();
 }
@@ -19,8 +26,8 @@ function save_settings(event) {
 var content =
     <div>
       <form id="la-form">
-	<label for="la-address">LiveAgent address: </label> <input type="text" id="la-address" value="https://liveagent.com/"/> <br/>
-	<label for="site-selector">Site selector: </label> <input type="text" id="site-selector" value=".*"/> <br/>
+	<label for="la-address">LiveAgent address: </label> <input type="text" id="la-address"/> <br/>
+	<label for="site-selector">Site selector: </label> <input type="text" id="site-selector"/> <br/>
         <button id="submit-btn">Submit</button>
         <button id="cancel-btn">Cancel</button>
       </form>
@@ -28,5 +35,13 @@ var content =
 document.body.appendChild(content);
 
 document.getElementById("la-form").onsubmit = save_settings;
-browser.storage.sync.get("la_address").then((ok) => document.getElementById("la-address").value = ok.la_address, (err) => console.log(err));
-browser.storage.sync.get("site_selector").then((ok) => document.getElementById("site-selector").value = ok.site_selector, (err) => console.log(err));
+
+const callback = (ok) => {
+    document.getElementById("la-address").value = ok.la_address !== undefined ? ok.la_address : "https://liveagent.com/";
+    document.getElementById("site-selector").value = ok.site_selector !== undefined ? ok.site_selector : ".*";
+};
+if (window.hasOwnProperty('chrome')) {
+    chrome.storage.sync.get(["la_address", "site_selector"], callback);
+} else {
+    browser.storage.sync.get(["la_address", "site_selector"]).then(callback);
+}

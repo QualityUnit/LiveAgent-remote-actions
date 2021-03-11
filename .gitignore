@@ -296,3 +296,5 @@ dist
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/emacs,yarn,node,jetbrains,vscode
+
+web-ext-artifacts

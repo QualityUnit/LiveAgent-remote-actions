@@ -2,9 +2,6 @@ import tippy from 'tippy.js';
 import 'tippy.js/themes/light.css';
 import './tooltip.css';
 
-import { parse_selector } from "./parse-selector.js";
-
-const regeneratorRuntime = require("regenerator-runtime");
 const mailtoParser = require("mailto-parser");
 
 console.log("asd");
@@ -67,7 +64,7 @@ window.LARemoteActions = {
 };
 
 function readFromStorage() {
-    browser.storage.sync.get(["la_address", "site_selector"]).then(
+    var callback = 
 	(item) => {
 	    const la_address = typeof item.la_address !== 'undefined' ? item.la_address : "https://liveagent.com/";
 	    const site_selector = typeof item.site_selector !== 'undefined' ? item.site_selector : ".*";
@@ -85,8 +82,12 @@ function readFromStorage() {
 	    if (res === true) {
                 window.LARemoteActions.create(la_address + "/agent/remote_actions.php", true);
             }
-        }
-    );
+        };
+    if (window.hasOwnProperty('chrome')) {
+	chrome.storage.sync.get(["la_address", "site_selector"], callback);
+    } else {
+        browser.storage.sync.get(["la_address", "site_selector"]).then(callback);
+    }
 }
 
 readFromStorage();

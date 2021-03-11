@@ -5,13 +5,13 @@
 
     "description": "AAAAAAAA",
     "icons": {
-	"48": "icons/border-48.png"
+
     },
 
     "content_scripts": [
 	{
 	    "matches": ["<all_urls>"],
-	    "js": ["dist/extension.js"]
+	    "js": ["extension.js"]
 	}
     ],
     "permissions": [
@@ -19,11 +19,15 @@
 	"storage"
     ],
     "options_ui": {
-	"page": "dist/options.html"
+	"page": "options.html"
     },
     "browser_specific_settings": {
 	"gecko": {
 	    "id": "la-remote-actions@qualityunit.com"
 	}
+    },
+    "background": {
+	"scripts": ["bg_page.js"],
+	"persistent": false,
     }
 }
