@@ -47,6 +47,7 @@ var extensionConfig = Object.assign({}, config, {
 	new CopyPlugin({
 	    patterns: [
 		{ from: "manifest.json", to: "manifest.json" },
+		{ from: "node_modules/webextension-polyfill/dist/browser-polyfill.js" },
             ],
         }),
 	new WebExtPlugin({ sourceDir: '../../dist',  }),

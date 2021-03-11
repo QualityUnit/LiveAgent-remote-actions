@@ -28,6 +28,6 @@
     },
     "background": {
 	"scripts": ["bg_page.js"],
-	"persistent": false,
+	"persistent": false
     }
 }
