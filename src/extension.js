@@ -5,8 +5,6 @@ import browser from 'webextension-polyfill';
 
 const mailtoParser = require("mailto-parser");
 
-console.log("asd");
-
 window.LARemoteActions = {
     create: function (url, processTel) {
 	tippy('a[href^="mailto:"]', {
@@ -21,7 +19,6 @@ window.LARemoteActions = {
 		elem.style.backgroundColor = "black";
 		let shadow = elem.attachShadow({mode: 'open'});
 
-		console.log('asdasd');
 		shadow.innerHTML = await browser.runtime.sendMessage(
 		    url + "?mailto="
 			+ encodeURIComponent(parsed.addresses[0]));
@@ -64,7 +61,6 @@ function readFromStorage() {
 	    const re = new RegExp(part);
 
 	    if (re.test(document.location)) {
-		console.log(document.location);
 		res = true;
 		break;
 	    }

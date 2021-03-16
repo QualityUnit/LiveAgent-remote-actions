@@ -1,6 +1,4 @@
-    import browser from 'webextension-polyfill';
-
-console.log("test");
+import browser from 'webextension-polyfill';
 
 browser.runtime.onMessage.addListener(
     async (url, sender) => {
