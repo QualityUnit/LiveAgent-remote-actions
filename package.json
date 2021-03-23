@@ -1,0 +1,29 @@
+{
+   "name": "LiveAgent-remote-actions",
+   "version": "0.0.1",
+   "description": "A",
+   "main": "src/extension.js",
+   "repository": "https://github.com/QualityUnit/LiveAgent-remote-actions",
+   "author": "Richard Brežák <richard@brezak.sk>",
+   "license": "MIT",
+   "dependencies": {
+      "mailto-parser": "^1.0.1",
+      "regenerator-runtime": "^0.13.7",
+      "tippy.js": "^6.3.1"
+   },
+   "devDependencies": {
+      "@babel/core": "^7.13.8",
+      "@babel/plugin-transform-react-jsx": "^7.12.17",
+      "@babel/plugin-transform-runtime": "^7.13.9",
+      "@babel/preset-env": "^7.13.9",
+      "babel-loader": "^8.2.2",
+      "copy-webpack-plugin": "^8.0.0",
+      "css-loader": "^5.1.1",
+      "html-webpack-plugin": "^5.2.0",
+      "web-ext": "^5.5.0",
+      "web-ext-plugin": "^1.0.1",
+      "webextension-polyfill": "^0.7.0",
+      "webpack": "^5.24.2",
+      "webpack-cli": "^4.5.0"
+   }
+}

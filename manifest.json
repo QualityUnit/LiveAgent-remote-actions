@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "LiveAgent-remote-actions",
+    "version": "1.0",
+
+    "description": "AAAAAAAA",
+    "icons": {
+
+    },
+
+    "content_scripts": [
+	{
+	    "matches": ["<all_urls>"],
+	    "js": ["extension.js"]
+	}
+    ],
+    "permissions": [
+	"<all_urls>",
+	"storage"
+    ],
+    "options_ui": {
+	"page": "options.html"
+    },
+    "browser_specific_settings": {
+	"gecko": {
+	    "id": "la-remote-actions@qualityunit.com"
+	}
+    },
+    "background": {
+	"scripts": ["bg_page.js"],
+	"persistent": false
+    }
+}
