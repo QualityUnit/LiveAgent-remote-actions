@@ -13,10 +13,33 @@ function get_settings() {
 
 function save_settings(event) {
     browser.storage.sync.set(get_settings());
+    const confirm = document.getElementById("confirm");
+    if (confirm.classList.contains("confirm-off")) {
+        confirm.classList.remove("confirm-off");
+        confirm.classList.add("confirm-on");
+
+        setTimeout(() => {
+            confirm.classList.remove("confirm-on");
+            confirm.classList.add("confirm-off");
+	}, 5000);
+    }
 
     event.preventDefault();
 }
 
+var styles = `
+      .confirm-on {
+          margin: 10px;
+      }
+
+      .confirm-off {
+          display: none;
+      }
+`;
+var head =
+    <style>
+      { styles }
+    </style>;
 var content =
     <div>
       <form id="la-form">
@@ -25,8 +48,10 @@ var content =
         <button id="submit-btn">Submit</button>
         <button id="cancel-btn">Cancel</button>
       </form>
+      <p class="confirm-off" id="confirm">Settings successfully saved!</p>
     </div>;
 document.body.appendChild(content);
+document.head.appendChild(head);
 
 document.getElementById("la-form").onsubmit = save_settings;
 
