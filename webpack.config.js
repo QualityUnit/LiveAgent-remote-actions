@@ -29,7 +29,7 @@ var config = {
     }
 };
 
-var extensionConfig = Object.assign({}, config, {
+var optionsConfig = Object.assign({}, config, {
     entry: './src/options.js',
     output: {
 	path: path.resolve(__dirname, 'dist'),
@@ -41,18 +41,12 @@ var extensionConfig = Object.assign({}, config, {
     watch: true,
     devtool: "source-map",
     plugins: [
-	new HtmlWebpackPlugin({
-	    filename: "options.html",
-	}),
-	new CopyPlugin({
-	    patterns: [
-		{ from: "manifest.json", to: "manifest.json" },
-		{ from: "node_modules/webextension-polyfill/dist/browser-polyfill.js" },
-            ],
-        }),
-	new WebExtPlugin({ sourceDir: '../../dist',  }),
+    	new HtmlWebpackPlugin({
+    	    filename: "options.html",
+    	}),
     ]
 });
+
 
 var backgroudConfig = Object.assign({}, config, {
     entry: './src/bg_page.js',
@@ -67,12 +61,26 @@ var backgroudConfig = Object.assign({}, config, {
     devtool: "source-map",
 });
 
-var optionsConfig = Object.assign({}, config, {
+var extensionConfig = Object.assign({}, config, {
     entry: './src/extension.js',
     output: {
 	path: path.resolve(__dirname, 'dist'),
 	filename: 'extension.js',
     },
+    node: {
+	global: false
+    },
+    watch: true,
+    devtool: "source-map",
+    plugins: [
+    	new CopyPlugin({
+    	    patterns: [
+    		{ from: "manifest.json", to: "manifest.json" },
+    		{ from: "node_modules/webextension-polyfill/dist/browser-polyfill.js" },
+            ],
+        }),
+    	new WebExtPlugin({ sourceDir: '../../dist',  }),
+    ],
 });
 
 module.exports = [
