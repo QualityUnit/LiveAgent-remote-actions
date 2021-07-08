@@ -4,10 +4,14 @@ import './tooltip.css';
 import browser from 'webextension-polyfill';
 
 const mailtoParser = require("mailto-parser");
+window.tippyInstances = [];
 
 window.LARemoteActions = {
     create: function (url, processTel) {
-	tippy('a[href^="mailto:"]', {
+        // tippyInstances.forEarch(instance => instance.destroy()); For some reason this casues execution to stop, I've got no clue why or how to debug it
+        tippyInstances.length = 0;
+        
+	window.tippyInstances.push(tippy('a[href^="mailto:"]', {
 	    interactive: true,
 	    allowHTML: true,
 	    placement: 'right-start',
@@ -24,9 +28,9 @@ window.LARemoteActions = {
 			+ encodeURIComponent(parsed.addresses[0]));
 		instance.setContent(elem);
 	    }
-	});
+	}));
 	if (processTel) {
-	    tippy('a[href^="tel:"]', {
+	    window.tippyInstances.push(tippy('a[href^="tel:"]', {
 		interactive: true,
 		allowHTML: true,
 		placement: 'right-start',
@@ -46,7 +50,7 @@ window.LARemoteActions = {
 				    .split(":")[1]));
 		    instance.setContent(elem);
 		},
-	    });
+	    }));
 	}
     }
 };
@@ -72,4 +76,4 @@ function readFromStorage() {
 }
 
 readFromStorage();
-// browser.storage.onChanged.addListener(readFromStorage); // Disabled, we need to delete the old tippys first or we get tippy-ception
+browser.storage.onChanged.addListener(readFromStorage);
