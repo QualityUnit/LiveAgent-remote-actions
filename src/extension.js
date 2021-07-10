@@ -53,7 +53,6 @@ window.LARemoteActions = {
 
 function readFromStorage() {
     browser.storage.sync.get(["la_address", "site_selector"]).then((data) => {
-	const la_address = typeof data.la_address !== 'undefined' ? data.la_address : "https://liveagent.com/";
 	const site_selector = typeof data.site_selector !== 'undefined' ? data.site_selector : ".*";
 
 	var res = false;
@@ -66,7 +65,12 @@ function readFromStorage() {
 	    }
 	}
 	if (res === true) {
-	    window.LARemoteActions.create(la_address + "/agent/remote_actions.php", true);
+	    if (typeof data.la_address !== 'undefined' || data.la_address === '') {
+		const la_address = data.la_address;
+		window.LARemoteActions.create(la_address + "/agent/remote_actions.php", true);
+	    } else {
+                alert("LiveAgent-remote-actions: Please go setup your LiveAgent address in the settings!");
+            }
 	}
     });
 }

@@ -56,6 +56,6 @@ document.head.appendChild(head);
 document.getElementById("la-form").onsubmit = save_settings;
 
 browser.storage.sync.get(["la_address", "site_selector"]).then((ok) => {
-    document.getElementById("la-address").value = ok.la_address !== undefined ? ok.la_address : "https://liveagent.com/";
+    document.getElementById("la-address").value = ok.la_address !== undefined ? ok.la_address : "";
     document.getElementById("site-selector").value = ok.site_selector !== undefined ? ok.site_selector : ".*";
 });
