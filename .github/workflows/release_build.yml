@@ -23,7 +23,7 @@ jobs:
         with:
           # uuid is only necessary when updating an existing addon,
           # omitting it will create a new addon
-          # uuid: '{7b312f5e-9680-436b-acc1-9b09f60e8aaa}' #TODO
+           uuid: '{la-remote-actions@qualityunit.com}'
           xpi: output/liveagent_web_contact_cards.zip
           manifest: manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
