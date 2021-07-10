@@ -79,7 +79,7 @@ var extensionConfig = Object.assign({}, config, {
     		{ from: "node_modules/webextension-polyfill/dist/browser-polyfill.js" },
             ],
         }),
-    	new WebExtPlugin({ sourceDir: '../../dist',  }),
+    	new WebExtPlugin({ sourceDir: '../../dist', buildPackage: true, artifactsDir: "output"}),
     ],
 });
 

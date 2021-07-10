@@ -1,0 +1,19 @@
+name: Test build
+
+on:
+    pull_request
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        timeout-minutes: 60
+        steps:
+            - uses: actions@checkout@v2.3.4
+            - uses: actions/cache@v2
+            with:
+                path: ./node_modules
+                key: modules-${{ hashFiles('package-lock.json') }}
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+            - run: npm install
+            - run: npx webpack bundle --no-watch --mode production

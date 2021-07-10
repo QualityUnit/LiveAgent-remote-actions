@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "LiveAgent-remote-actions",
-    "version": "1.0",
+    "name": "LiveAgent Web Contact Cards",
+    "version": "0.0.1",
 
-    "description": "AAAAAAAA",
+    "description": "Hover over embedded emails and phone numbers on the web to view LiveAgent's pop-up contact cards. If you click on an embedded phone number or email, LiveAgent will automatically create a prefilled ticket/call form.",
     "icons": {
 
     },
