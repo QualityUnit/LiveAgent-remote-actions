@@ -83,7 +83,14 @@ var extensionConfig = Object.assign({}, config, {
             sourceDir: '../../dist',
             buildPackage: true,
             artifactsDir: "output",
-            outputFilename: "liveagent_web_contact_cards.zip"
+            outputFilename: "liveagent_web_contact_cards-firefox.zip"
+        }),
+        new WebExtPlugin({
+            sourceDir: '../../dist',
+            buildPackage: true,
+            artifactsDir: "output",
+            outputFilename: "liveagent_web_contact_cards-chromium.zip",
+            target: "chromium"
         }),
     ],
 });
