@@ -3,7 +3,7 @@ name: Build release & deploy
 on:
   push:
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
           # uuid is only necessary when updating an existing addon,
           # omitting it will create a new addon
           # uuid: '{7b312f5e-9680-436b-acc1-9b09f60e8aaa}' #TODO
-          xpi: output/liveagent_web_contact_cards-${{GITHUB_REF#refs/tags/}}.zip
+          xpi: output/liveagent_web_contact_cards.zip
           manifest: manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
           api-secret: ${{ secrets.FIREFOX_API_SECRET }}
