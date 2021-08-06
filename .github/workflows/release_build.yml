@@ -29,13 +29,21 @@ jobs:
           manifest: manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
           api-secret: ${{ secrets.FIREFOX_API_SECRET }}
-      - uses: trmcnvn/chrome-addon@v2
-        name: Chrome upload
+#      - uses: trmcnvn/chrome-addon@v2
+#        name: Chrome upload
+#        with:
+#          # extension is only necessary when updating an existing addon,
+#          # omitting it will create a new addon
+#          extension: aolfiecgellhcfcblocebkbdmnmjnngd
+#          zip: output/liveagent_web_contact_cards-chromium.zip
+#          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+#          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+#          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+      - name: Chrome upload
+        uses: mnao305/chrome-extension-upload@1.1.1
         with:
-          # extension is only necessary when updating an existing addon,
-          # omitting it will create a new addon
-          extension: aolfiecgellhcfcblocebkbdmnmjnngd
-          zip: output/liveagent_web_contact_cards-chromium.zip
+          file-path: output/liveagent_web_contact_cards-firefox.zip
+          extension-id: aolfiecgellhcfcblocebkbdmnmjnngd
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}

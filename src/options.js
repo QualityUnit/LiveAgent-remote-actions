@@ -21,7 +21,7 @@ function save_settings(event) {
         setTimeout(() => {
             confirm.classList.remove("confirm-on");
             confirm.classList.add("confirm-off");
-	}, 5000);
+	}, 3000);
     }
 
     event.preventDefault();
