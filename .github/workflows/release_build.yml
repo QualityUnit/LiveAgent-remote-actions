@@ -34,7 +34,7 @@ jobs:
         with:
           # extension is only necessary when updating an existing addon,
           # omitting it will create a new addon
-          # extension: abcdefg
+          extension: aolfiecgellhcfcblocebkbdmnmjnngd
           zip: output/liveagent_web_contact_cards-chromium.zip
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
