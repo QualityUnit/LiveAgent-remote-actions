@@ -12,11 +12,19 @@ window.LARemoteActions = {
 	    allowHTML: true,
 	    placement: 'right-start',
 	    theme: 'light',
-	    content: 'Loading...',
+	    content: '<div style="box-sizing: border-box;' +
+			'    font-family: Helvetica, Arial, sans-serif;' +
+			'    font-size: 12px;' +
+			'    margin: 0; border:0;' +
+			'    background-color: #fff;' +
+			'    padding: 20px;' +
+			'    color: #444;' +
+			'    box-shadow: 0 0 10px 4px rgb(154 161 177 / 15%), 0 4px 30px -8px rgb(36 40 47 / 25%), 0 -4px 30px -8px rgb(36 40 47 / 25%);' +
+			'    border-radius: 8px;' +
+			'    width: 270px;">Loading...</div>',
 	    async onShow(instance) {
 		const parsed = mailtoParser.parse(instance.reference.getAttribute("href"));
 		let elem = document.createElement("div");
-		elem.style.backgroundColor = "black";
 		let shadow = elem.attachShadow({mode: 'open'});
 
 		shadow.innerHTML = await browser.runtime.sendMessage(
@@ -31,10 +39,18 @@ window.LARemoteActions = {
 		allowHTML: true,
 		placement: 'right-start',
 		theme: 'light',
-		content: 'Loading...',
+		content: '<div style="box-sizing: border-box;' +
+			'    font-family: Helvetica, Arial, sans-serif;' +
+			'    font-size: 12px;' +
+			'    margin: 0; border:0;' +
+			'    background-color: #fff;' +
+			'    padding: 20px;' +
+			'    color: #444;' +
+			'    box-shadow: 0 0 10px 4px rgb(154 161 177 / 15%), 0 4px 30px -8px rgb(36 40 47 / 25%), 0 -4px 30px -8px rgb(36 40 47 / 25%);' +
+			'    border-radius: 8px;' +
+			'    width: 270px;">Loading...</div>',
 		async onShow(instance) {
 		    let elem = document.createElement("div");
-		    elem.style.backgroundColor = "white";
 		    let shadow = elem.attachShadow({mode: 'open'});
 
 		    shadow.innerHTML = await browser.runtime.sendMessage(

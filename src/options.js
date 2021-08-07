@@ -35,6 +35,28 @@ var styles = `
       .confirm-off {
           display: none;
       }
+      
+      .la-buttons {
+          margin-top: 10px;
+      }      
+      
+      .la-btn {
+          padding: 15px 20px;
+          font-size: 13px;
+          font-weight: bold;
+          border: none;
+          border-radius: 5px;
+      }
+      
+      .cancel-btn {
+          background: #e4e5e9;
+          color: #212121;  
+      }
+      
+      .submit-btn {
+          background: #fe983e;
+          color: #fff;  
+      }
 `;
 var head =
     <style>
@@ -45,8 +67,10 @@ var content =
       <form id="la-form">
 	<label for="la-address">LiveAgent address: </label> <input type="text" id="la-address"/> <br/>
 	<label for="site-selector">Site selector: </label> <input type="text" id="site-selector"/> <br/>
-        <button id="submit-btn">Submit</button>
-        <button id="cancel-btn">Cancel</button>
+          <div class="la-buttons">
+            <button id="submit-btn" class="la-btn submit-btn">Submit</button>
+            <button id="cancel-btn" class="la-btn cancel-btn">Cancel</button>
+          </div>
       </form>
       <p class="confirm-off" id="confirm">Settings successfully saved!</p>
     </div>;
