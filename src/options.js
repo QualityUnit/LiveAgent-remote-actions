@@ -64,8 +64,16 @@ var head =
     </style>;
 var content =
     <div>
-      <form id="la-form">
-	<label for="la-address">LiveAgent address: </label> <input type="text" id="la-address"/> <br/>
+      <form id="la-form" onSubmit={save_settings}>
+          <label for="la-address">LiveAgent Account URL</label>
+          <br />
+          <input type="text" id="la-address" placeholder="https://yourcompany.ladesk.com/" />
+          <h2>Site selector</h2>
+          Choose whether you want to use your contact cards on all or just specific websites.
+          If you wish to use the widget on specific sites only, leave the box unchecked.
+          <input type="checkbox" id="la-use-on-all-sites" />
+          <label for="la-use-on-all-sites">Use on all sites</label>
+
 	<label for="site-selector">Site selector: </label> <input type="text" id="site-selector"/> <br/>
           <div class="la-buttons">
             <button id="submit-btn" class="la-btn submit-btn">Submit</button>
@@ -76,8 +84,6 @@ var content =
     </div>;
 document.body.appendChild(content);
 document.head.appendChild(head);
-
-document.getElementById("la-form").onsubmit = save_settings;
 
 browser.storage.sync.get(["la_address", "site_selector"]).then((ok) => {
     document.getElementById("la-address").value = ok.la_address !== undefined ? ok.la_address : "https://liveagent.com/";
