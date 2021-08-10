@@ -2,6 +2,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const WebExtPlugin = require('web-ext-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const mode = process.env.NODE_ENV || 'development';
+const prod = mode === 'production';
 
 var config = {
     module: {
@@ -55,10 +57,10 @@ var optionsConfig = Object.assign({}, config, {
                     loader: 'svelte-loader',
                     options: {
                         compilerOptions: {
-                            dev: false
+                            dev: !prod
                         },
-                        emitCss: true,
-                        hotReload: false
+                        emitCss: prod,
+                        hotReload: !prod
                     }
                 }
             },
@@ -83,8 +85,8 @@ var optionsConfig = Object.assign({}, config, {
             filename: '[name].css'
         })
     ],
-    watch: true,
-    devtool: "source-map",
+    watch: prod,
+    devtool: prod ? false : 'source-map',
 });
 
 
@@ -97,8 +99,8 @@ var backgroudConfig = Object.assign({}, config, {
     node: {
         global: false
     },
-    watch: true,
-    devtool: "source-map",
+    watch: prod,
+    devtool: prod ? false : 'source-map',
 });
 
 var extensionConfig = Object.assign({}, config, {
@@ -125,13 +127,15 @@ var extensionConfig = Object.assign({}, config, {
             buildPackage: true,
             artifactsDir: "output",
             outputFilename: "liveagent_web_contact_cards-firefox.zip",
+            browserConsole: true
         }),
         new WebExtPlugin({
             sourceDir: '../../dist',
             buildPackage: true,
             artifactsDir: "output",
             outputFilename: "liveagent_web_contact_cards-chromium.zip",
-            target: "chromium"
+            target: "chromium",
+            browserConsole: true
         }),
     ],
 });
