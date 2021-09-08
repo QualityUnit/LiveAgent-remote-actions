@@ -1,6 +1,5 @@
 <script>
     import {AllSites, persistStore, SiteSelectors, LiveAgentUrl} from "./ConfigStore";
-    import '@polymer/paper-tooltip'
     import {success} from "./Toast";
     async function handleSubmit(event) {
         let validation = validateSiteSelectors(event);
@@ -46,15 +45,13 @@
         <form on:submit|preventDefault="{handleSubmit}"     on:changed={removeValidity}
               on:input={removeValidity}>
             <label for="url">LiveAgent Account URL</label>
-            <span id="url-tooltip">ⓘ</span>
-            <br>
             <input type="url" id="url" name="url" placeholder="https://yourcompany.ladesk.com/" bind:value={$LiveAgentUrl} required/>
-            <paper-tooltip for="url-tooltip" position="right" class="slim">
+            <div class="fieldDescription">
                 Enter your LiveAgent account name in a URL format.
                 If you don't know your LiveAgent account name, log in to LiveAgent,
                 look at the browser URL and copy-paste the first part of the URL.
-                It should look like this: https://accountname@ladesk.com
-            </paper-tooltip>
+                It should look like this: https://accountname.ladesk.com
+            </div>
             <h2>Site selector</h2>
             <p>
                 Choose whether you want to use your contact cards on all or just specific websites.
@@ -62,11 +59,9 @@
             </p>
             <input type="checkbox" name="use-on-all-sites" id="use-on-all-sites" bind:checked={$AllSites}/>
             <label for="use-on-all-sites">Use on all sites</label>
-            <span id="use-on-all-sites-tooltip">ⓘ</span>
-            <paper-tooltip for="use-on-all-sites-tooltip" position="right" class="slim">
+            <div class="fieldDescription checkboxDescription">
                 If you would like your widget to appear on all websites, make sure you tick the checkbox.
-            </paper-tooltip>
-            <br>
+            </div>
             {#if !$AllSites}
                 <div>
                     <label for="site-selector">Site selector</label>
@@ -84,30 +79,64 @@
 <style>
     :host {
         --main-color: #fa9531;
+        --main-color-lighter: #ffbd39;
         --secondary-color: #e4e5e9;
         --text-color-inverted: white;
         --text-color: black;
         --another-text-color: #606060;
+        --tooltip-color: #000000;
+        --description-text-color: #65676b;
+        --input-placeholder-color: #b0b4bb;
+        --input-border-color: #ced0d4;
+        --input-border-radius: 6px;
+    }
+
+    ::placeholder {
+        color: var(--input-placeholder-color);
+    }
+
+    main {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Poppins-Regular, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    	font-size:13px;
+    	padding: 10px 15px;
+    }
+
+    input[type="url"],
+    textarea {
+        border: 1px solid var(--input-border-color);
+        border-radius: var(--input-border-radius);
+        padding: 7px 10px;
+        line-height: 20px;
+        color: var(--text-color);
     }
 
     input[type="submit"] {
-        border-radius: 6px;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    input[type="submit"], input[type="checkbox"] {
+        padding: 0 25px;
+        cursor: pointer;
+        line-height: 35px;
+        font-weight: 700;
         color: var(--text-color-inverted);
         background: var(--main-color);
+        border: none;
+        border-radius: var(--input-border-radius);
+    }
+
+    input[type="submit"]:hover {
+        background: var(--main-color-lighter);
+    }
+
+    label {
+        line-height: 30px;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin: 15px 0 10px;
     }
 
     .another-text {
         color: var(--another-text-color);
-        font-size: 12px;
-    }
-
-    paper-tooltip {
-        width: 300px;
+        font-size: 13px;
     }
 
     #url, #site-selector {
@@ -116,5 +145,15 @@
 
     .container {
         width:400px;
+    }
+
+    .fieldDescription {
+        color: var(--description-text-color);
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .checkboxDescription {
+        padding-left: 15px;
     }
 </style>
