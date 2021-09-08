@@ -39,6 +39,7 @@ jobs:
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          publish-target: trustedTesters
 #      - name: Chrome upload
 #        uses: mnao305/chrome-extension-upload@1.1.1
 #        with:
