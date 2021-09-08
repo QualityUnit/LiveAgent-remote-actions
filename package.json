@@ -1,6 +1,6 @@
 {
    "name": "liveagent-web-contact-cards",
-   "version": "0.0.13",
+   "version": "0.0.14",
    "description": "Hover over embedded emails and phone numbers on the web to view LiveAgent's pop-up contact cards. If you click on an embedded phone number or email, LiveAgent will automatically create a prefilled ticket/call form.",
    "main": "src/extension.js",
    "repository": "https://github.com/QualityUnit/LiveAgent-remote-actions",
