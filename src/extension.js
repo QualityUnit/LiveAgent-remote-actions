@@ -72,7 +72,7 @@ window.LARemoteActions = {
 function readFromStorage() {
     browser.storage.sync.get(["la_address", "site_selectors", "all_sites"]).then((data) => {
         const la_address = typeof data["la_address"] !== 'undefined' ? data.la_address : "https://liveagent.com/";
-        const site_selectors = typeof data["site_selectors"] !== 'undefined' ? data.site_selectors.trim() : "";
+        const site_selectors = typeof data["site_selectors"] !== 'undefined' && data["site_selectors"] != null ? data.site_selectors.trim() : "";
         let res = data["all_sites"];
         if (!res && site_selectors.trim() != "") {
             for (const line of site_selectors.split('\n')) {
@@ -86,7 +86,7 @@ function readFromStorage() {
             }
         }
         if (res === true) {
-            window.LARemoteActions.create(la_address + "/agent/remote_actions.php", true);
+            window.LARemoteActions.create(la_address + "/agent/web_contact_cards.php", true);
         }
     });
 }
