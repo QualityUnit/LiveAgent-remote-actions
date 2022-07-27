@@ -13,23 +13,25 @@
       "js": [
         "extension.js"
       ]
-	}
-    ],
-    "permissions": [
-	"<all_urls>",
-	"storage"
-    ],
-    "options_ui": {
-	"page": "options.html",
-      "css": "main.css"
-    },
-    "browser_specific_settings": {
-	"gecko": {
-	    "id": "la-remote-actions@qualityunit.com"
-	}
-    },
-    "background": {
-	"scripts": ["bg_page.js"],
-	"persistent": false
     }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "css": "main.css"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "la-remote-actions@qualityunit.com"
+    }
+  },
+  "background": {
+    "scripts": [
+      "bg_page.js"
+    ],
+    "persistent": false
+  }
 }
