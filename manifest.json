@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "LiveAgent Web Contact Cards",
   "version": "0.0.18",
-  "description": "Hover over embedded emails and phone numbers on the web to view LiveAgent's pop-up contact cards. If you click on an embedded phone number or email, LiveAgent will automatically create a prefilled ticket/call form.",
+  "description": "Hover over embedded emails and phone numbers on the web to view LiveAgent's pop-up contact cards.",
   "icons": {
   },
   "content_scripts": [
@@ -13,23 +13,25 @@
       "js": [
         "extension.js"
       ]
-	}
-    ],
-    "permissions": [
-	"<all_urls>",
-	"storage"
-    ],
-    "options_ui": {
-	"page": "options.html",
-      "css": "main.css"
-    },
-    "browser_specific_settings": {
-	"gecko": {
-	    "id": "la-remote-actions@qualityunit.com"
-	}
-    },
-    "background": {
-	"scripts": ["bg_page.js"],
-	"persistent": false
     }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "css": "main.css"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "la-remote-actions@qualityunit.com"
+    }
+  },
+  "background": {
+    "scripts": [
+      "bg_page.js"
+    ],
+    "persistent": false
+  }
 }
